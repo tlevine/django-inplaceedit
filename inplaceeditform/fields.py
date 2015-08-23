@@ -25,6 +25,7 @@ from django.contrib.admin.widgets import AdminDateWidget, AdminSplitDateTime, Ad
 from django.forms.models import modelform_factory
 from django.template.loader import render_to_string
 from django.utils.formats import number_format
+from django.forms import TextInput
 
 from inplaceeditform import settings as inplace_settings
 from inplaceeditform.commons import apply_filters, import_module, has_transmeta, get_static_url, get_admin_static_url
@@ -669,3 +670,8 @@ class AdaptorPointField(AdaptorTextField):
     @property
     def name(self):
         return 'point'
+
+    def get_field(self):
+        field = super(AdaptorPointField, self).get_field()
+        field.field.widget = TextInput({'placeholder': 'POINT(LNG LAT)'})
+        return field
