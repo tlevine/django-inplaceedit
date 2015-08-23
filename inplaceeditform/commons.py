@@ -18,6 +18,10 @@ from django.db import models
 from django.db.models.fields import FieldDoesNotExist
 from django.db.models.fields.related import ForeignKey, ManyToManyField
 from django.conf import settings
+try:
+    from django.contrib.gis.db import models as gismodels
+except ImportError:
+    gismodels = None
 
 from inplaceeditform import settings as inplace_settings
 from inplaceeditform.adaptors import ADAPTOR_INPLACEEDIT as DEFAULT_ADAPTOR_INPLACEEDIT
@@ -116,6 +120,8 @@ def get_adaptor_class(adaptor=None, obj=None, field_name=None):
             adaptor = 'image'
         elif isinstance(field, models.FileField):
             adaptor = 'file'
+        elif gismodels and isinstance(field, gismodels.Field):
+            adaptor = 'text'
 
         if getattr(field, 'choices', None):
             adaptor = 'choices'
