@@ -664,3 +664,8 @@ class AdaptorImageField(AdaptorFileField):
 
     def render_value(self, field_name=None, template_name='inplaceeditform/adaptor_image/render_value.html'):
         return super(AdaptorImageField, self).render_value(field_name=field_name, template_name=template_name)
+
+class AdaptorPointField(AdaptorTextField):
+    @property
+    def name(self):
+        return 'point'

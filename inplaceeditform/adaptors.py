@@ -31,4 +31,5 @@ ADAPTOR_INPLACEEDIT = {'text': 'inplaceeditform.fields.AdaptorTextField',
                        'm2mcomma': 'inplaceeditform.fields.AdaptorCommaSeparatedManyToManyField',
                        'file': 'inplaceeditform.fields.AdaptorFileField',
                        'image': 'inplaceeditform.fields.AdaptorImageField',
+                       'point': 'inplaceeditform.fields.AdaptorPointField',
                        }
